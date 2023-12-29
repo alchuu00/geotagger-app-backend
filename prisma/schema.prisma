@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String       @id @default(uuid())
+  created_at  DateTime     @default(now())
+  updated_at  DateTime     @updatedAt
+  first_name  String
+  last_name   String
+  avatar      String
+  role        String
+  points      Int
+  locations   Location[]
+  guesses     Guess[]
+  actionLogs  ActionLog[]
+  resetTokens ResetToken[]
+}
+
+model Location {
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  image      String
+  longitude  String
+  latitiude  String
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+}
+
+model Guess {
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  longitude  String
+  latitiude  String
+  difference String
+  points     Int
+  order      Int
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+}
+
+model ActionLog {
+  id             String   @id @default(uuid())
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  action         String
+  new_value      String
+  component_type String
+  user           User     @relation(fields: [userId], references: [id])
+  userId         String
+}
+
+model ResetToken {
+  id          String   @id @default(uuid())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  token       String
+  expiry_date String
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+}
