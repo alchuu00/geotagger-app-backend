@@ -14,6 +14,7 @@ async function bootstrap() {
   });
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser());
+
   // Setup session storage
   app.use(
     session({
@@ -27,6 +28,7 @@ async function bootstrap() {
   );
   app.use(passport.initialize());
   app.use(passport.session());
+
   // Setup to serve static files
   app.use('/files', express.static('files'));
 

@@ -9,17 +9,14 @@ export class SessionSerializer extends PassportSerializer {
     super();
   }
 
+  // Determines what user data to store in the session upon login
   serializeUser(user: UserType, done: any) {
-    console.log('serialize user');
-    console.log(user);
     done(null, user);
   }
 
+  // Fetches the user data from the session using the user ID
   async deserializeUser(payload: UserType, done: any) {
-    console.log('payload', payload.id);
     const user = await this.authService.findUser(payload.id);
-    console.log('deserialize user');
-    console.log(user);
     return user ? done(null, user) : done(null, null);
   }
 }

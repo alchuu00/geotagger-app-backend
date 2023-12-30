@@ -5,21 +5,18 @@ import { PrismaService } from '../prisma.service';
 export class AuthService {
   constructor(private readonly prismaService: PrismaService) {}
 
+  // Validates a user by email. If the user exists, returns the user. If not, creates a new user with the provided details.
   async validateUser(details: any) {
-    console.log('AuthService');
-    console.log(details);
     const user = await this.prismaService.user.findUnique({
       where: { email: details.email },
     });
-    console.log('user', user);
     if (user) return user;
-    console.log('user not found!');
     const newUser = this.prismaService.user.create({ data: details });
     return newUser;
   }
 
+  // Finds and returns a user from the database by their ID
   async findUser(id: string) {
-    console.log('find id', id);
     const user = await this.prismaService.user.findUnique({
       where: { id },
     });
