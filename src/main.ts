@@ -7,6 +7,7 @@ import { AllExceptionsFilter } from './helpers/GlobalExceptionFilter';
 import { AppModule } from './app.module';
 import * as session from 'express-session';
 import * as passport from 'passport';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -34,6 +35,16 @@ async function bootstrap() {
 
   // Setup global filters
   app.useGlobalFilters(new AllExceptionsFilter());
+
+  // Setup Swagger API documentation
+  const config = new DocumentBuilder()
+    .setTitle('Geotagger App API')
+    .setDescription('Guess where your friends are!')
+    .setVersion('1.0')
+    .addTag('Geotagger')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
 
   // Start the backend server
   const PORT = process.env.PORT || 8080;
