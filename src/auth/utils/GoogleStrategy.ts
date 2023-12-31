@@ -12,9 +12,9 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     private configService: ConfigService,
   ) {
     super({
-      clientID: configService.get('CLIENT_ID'),
-      clientSecret: configService.get('CLIENT_SECRET'),
-      callbackURL: configService.get('CLIENT_URL'),
+      clientID: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      callbackURL: process.env.CLIENT_URL,
       scope: ['profile', 'email'],
     });
   }

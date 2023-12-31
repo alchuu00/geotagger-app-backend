@@ -9,15 +9,13 @@ import { AppService } from './app.service';
 import { LoggerMiddleware } from 'src/middleware/logger.middleware';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
-import * as dotenv from 'dotenv';
-import * as fs from 'fs';
 import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
     AuthModule,
     ConfigModule.forRoot({
-      load: [() => dotenv.parse(fs.readFileSync('.env.development'))],
+      envFilePath: '.env.development',
     }),
     PassportModule.register({ session: true }),
   ],
