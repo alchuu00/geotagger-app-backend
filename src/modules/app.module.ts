@@ -10,6 +10,9 @@ import { LoggerMiddleware } from 'src/middleware/logger.middleware';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
+import { UsersModule } from './users/users.module';
+import { GuessesModule } from './guesses/guesses.module';
+import { LocationsModule } from './locations/locations.module';
 
 @Module({
   imports: [
@@ -18,6 +21,9 @@ import { PassportModule } from '@nestjs/passport';
       envFilePath: '.env.development',
     }),
     PassportModule.register({ session: true }),
+    UsersModule,
+    GuessesModule,
+    LocationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

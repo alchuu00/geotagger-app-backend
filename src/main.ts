@@ -4,7 +4,7 @@ import cookieParser = require('cookie-parser');
 import * as express from 'express';
 import Logging from './library/Logging';
 import { AllExceptionsFilter } from './helpers/GlobalExceptionFilter';
-import { AppModule } from './app.module';
+import { AppModule } from './modules/app.module';
 import * as session from 'express-session';
 import * as passport from 'passport';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
