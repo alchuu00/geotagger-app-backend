@@ -6,6 +6,8 @@ export type UserType = {
   last_name: string;
   email: string;
   avatar?: string;
+  password: string;
+  confirm_password: string;
   role?: string;
   points?: number;
   locations?: LocationType[];
