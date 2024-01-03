@@ -14,6 +14,7 @@ async function bootstrap() {
     bufferLogs: true,
   });
   app.useGlobalPipes(new ValidationPipe());
+
   app.use(cookieParser());
 
   // Setup session storage

@@ -1,4 +1,3 @@
-import { Exclude } from 'class-transformer';
 import {
   IsNotEmpty,
   IsEmail,
@@ -26,13 +25,11 @@ export class RegisterUserDto {
   @IsNotEmpty()
   avatar: string;
 
-  @Exclude()
   @IsNotEmpty()
   @Length(6, 50)
   @Matches(/^(?=.*[0-9])/)
   password: string;
 
-  @Exclude()
   @IsNotEmpty()
   @Length(6, 50)
   @Matches(/^(?=.*[0-9])/)
