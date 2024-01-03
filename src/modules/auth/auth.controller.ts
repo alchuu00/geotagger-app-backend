@@ -31,6 +31,7 @@ export class AuthController {
     private prismaService: PrismaService,
   ) {}
 
+  @Public()
   @Get('google/login')
   @UseGuards(GoogleAuthGuard)
   async handleLogin() {

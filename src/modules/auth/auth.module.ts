@@ -14,7 +14,7 @@ import { JwtAuthGuard } from './guards/AuthGuard';
     ConfigModule.forRoot(),
     JwtModule.register({
       global: true,
-      secret: 'b10bd247ec1641499c7ad16b8eda371e3rg03300f5b7',
+      secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '60s' },
     }),
   ],
