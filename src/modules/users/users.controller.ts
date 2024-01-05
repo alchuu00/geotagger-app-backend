@@ -1,9 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Patch, UseInterceptors } from '@nestjs/common';
 import { UserType } from 'src/utils/types';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
+@UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
