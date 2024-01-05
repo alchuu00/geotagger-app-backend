@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
 import { GoogleStrategy } from './strategies/GoogleStrategy';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './guards/AuthGuard';
-import { jwtConstants } from 'src/constants/jwtConstants';
+import { jwtConstants } from 'src/modules/auth/constants/jwtConstants';
 
 @Module({
   imports: [
