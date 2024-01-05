@@ -38,6 +38,7 @@ export class AuthController {
     return { msg: 'Google Authentication' };
   }
 
+  @Public()
   @Get('google/redirect')
   @UseGuards(GoogleAuthGuard)
   async handleRedirect() {
@@ -68,6 +69,8 @@ export class AuthController {
     });
     return newUser;
   }
+
+  // TODO upload avatar image upon register
 
   @Public()
   @UseGuards(JwtAuthGuard)

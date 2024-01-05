@@ -16,6 +16,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   }
 
   async validate(accessToken: string, refreshToken: string, profile: Profile) {
+    // TODO figure a way to create access token
     const user = this.authService.validateUserGoogle({
       email: profile.emails[0].value,
       first_name: profile.name.givenName,

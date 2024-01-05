@@ -16,7 +16,8 @@ import { LocationsModule } from './locations/locations.module';
   imports: [
     AuthModule,
     ConfigModule.forRoot({
-      envFilePath: '.env.development',
+      isGlobal: true,
+      envFilePath: `.env.${process.env.STAGE}`,
     }),
     PassportModule.register({ session: true }),
     UsersModule,
