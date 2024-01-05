@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "User" ALTER COLUMN "role" SET DEFAULT 'user',
+ALTER COLUMN "points" SET DEFAULT 10;

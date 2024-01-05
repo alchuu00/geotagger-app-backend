@@ -1,6 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import cookieParser = require('cookie-parser');
+import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
 import Logging from './library/Logging';
 import { AllExceptionsFilter } from './helpers/GlobalExceptionFilter';
@@ -14,6 +14,7 @@ async function bootstrap() {
     bufferLogs: true,
   });
   app.useGlobalPipes(new ValidationPipe());
+
   app.use(cookieParser());
 
   // Setup session storage
