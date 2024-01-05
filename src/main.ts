@@ -8,6 +8,7 @@ import { AppModule } from './modules/app.module';
 import * as session from 'express-session';
 import * as passport from 'passport';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { userMiddleware } from './middleware/user.middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -30,6 +31,8 @@ async function bootstrap() {
   );
   app.use(passport.initialize());
   app.use(passport.session());
+
+  app.use(userMiddleware);
 
   // Setup to serve static files
   app.use('/files', express.static('files'));
