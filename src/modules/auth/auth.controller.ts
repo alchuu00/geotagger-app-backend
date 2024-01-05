@@ -84,6 +84,7 @@ export class AuthController {
   async login(
     @Body() loginUserDto: LoginUserDto,
     @Res({ passthrough: true }) res: Response,
+    @Req() req: RequestWithUser,
   ) {
     const user = await this.prismaService.user.findUnique({
       where: { email: loginUserDto.email },
@@ -99,7 +100,6 @@ export class AuthController {
     if (!passwordMatch) {
       throw new UnauthorizedException('Invalid credentials');
     }
-    console.log('user', user);
     const access_token = await this.authService.generateJwt(user);
     console.log('access token', access_token);
     res.cookie('access_token', access_token, {
@@ -108,6 +108,15 @@ export class AuthController {
       secure: true,
       expires: new Date(Date.now() + Number(process.env.JWT_EXPIRY)),
     });
+    console.log('req.user', req.user);
+    return user;
+  }
+
+  @Public()
+  @Get('test')
+  testUser(@Req() req: Request): any {
+    console.log(req.user);
+    return req.user;
   }
 
   @Public()

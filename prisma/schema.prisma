@@ -34,7 +34,7 @@ model Location {
   updated_at DateTime @updatedAt
   image      String
   longitude  String
-  latitiude  String
+  latitude  String
   user       User     @relation(fields: [userId], references: [id])
   userId     String
 }
@@ -44,7 +44,7 @@ model Guess {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   longitude  String
-  latitiude  String
+  latitude  String
   difference String
   points     Int
   order      Int
