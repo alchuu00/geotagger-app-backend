@@ -27,6 +27,17 @@ export class LocationsService {
     createUpdateLocationDto: CreateUpdateLocationDto,
     userId: string,
   ): Promise<LocationType> {
+    const user = await this.prismaService.user.findUnique({
+      where: { id: userId },
+    });
+
+    const newPoints = user.points + 10;
+
+    await this.prismaService.user.update({
+      where: { id: userId },
+      data: { points: newPoints },
+    });
+
     return await this.prismaService.location.create({
       data: {
         ...createUpdateLocationDto,
