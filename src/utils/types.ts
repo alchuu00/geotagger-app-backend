@@ -31,10 +31,7 @@ export type GuessType = {
   id: string;
   created_at?: Date;
   updated_at?: Date;
-  longitude: string;
-  latitude: string;
-  difference: string;
-  points: number;
+  difference: number;
   order: number;
   user?: UserType;
   userId: string;

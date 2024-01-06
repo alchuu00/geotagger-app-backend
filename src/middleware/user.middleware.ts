@@ -16,7 +16,6 @@ export async function userMiddleware(
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     if (typeof decoded === 'object') {
-      console.log('Decoded:', decoded);
       const user = await prismaService.user.findUnique({
         where: { id: decoded.sub },
       });
